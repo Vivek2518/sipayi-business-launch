@@ -196,12 +196,26 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* Map placeholder */}
-            <div className="border rounded-lg overflow-hidden">
-              <div className="bg-muted h-48 flex items-center justify-center text-muted-foreground text-sm px-4 text-center">
-                <MapPin className="h-5 w-5 mr-2" />
-                Domlur, Bengaluru
-              </div>
+            {/* Map */}
+            <div className="border rounded-lg overflow-hidden h-[280px] relative group">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.1328477610996!2d77.63660387574886!3d12.96335961502444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae13f064436577%3A0x633d74c760a5e8c0!2sDomlur%20Flyover!5e0!3m2!1sen!2sin!4v1712997500000!5m2!1sen!2sin&disableDefaultUI=1&gestureHandling=none"
+                width="100%"
+                height="100%"
+                style={{ border: 0, pointerEvents: "none" }}
+                allowFullScreen={false}
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Sipayi Security Location"
+                className="w-full h-full grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500"
+              ></iframe>
+              <a 
+                href="https://www.google.com/maps/search/?api=1&query=%238%2F2%2C1%208%2F2%2C%20Ist%20FLOOR%2C%20ABOVE%20NARAYANA%20KITCHEN%2C%20NEAR%20DOMLAR%20FLY%20OVER%20RING%20ROAD%20DOMLUR%20LAYOUT%2C%20BENGALURU%20560071"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute inset-0 z-10"
+                aria-label="Open in Google Maps"
+              ></a>
             </div>
           </div>
         </div>
