@@ -3,10 +3,45 @@ import { Phone, Mail, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import Layout from "@/components/Layout";
 
+type ContactForm = {
+  name: string;
+  phone: string;
+  email: string;
+  service: string;
+  message: string;
+};
+
+const emptyForm: ContactForm = { name: "", phone: "", email: "", service: "", message: "" };
+
+const submitContactToGoogleSheet = async (data: ContactForm) => {
+  const endpoint = (import.meta.env.VITE_GOOGLE_SHEETS_WEB_APP_URL as string | undefined)?.trim();
+  if (!endpoint) {
+    throw new Error("Missing VITE_GOOGLE_SHEETS_WEB_APP_URL");
+  }
+
+  const payload = {
+    name: data.name.trim(),
+    phone: data.phone.trim(),
+    email: data.email.trim(),
+    service: data.service,
+    message: data.message.trim(),
+    submittedAt: new Date().toISOString(),
+    pageUrl: window.location.href,
+  };
+
+  const formData = new FormData();
+  for (const [key, value] of Object.entries(payload)) {
+    formData.append(key, value);
+  }
+
+  await fetch(endpoint, { method: "POST", body: formData, mode: "no-cors" });
+};
+
 const Contact = () => {
   const { toast } = useToast();
-  const [form, setForm] = useState({ name: "", phone: "", email: "", service: "", message: "" });
+  const [form, setForm] = useState<ContactForm>(emptyForm);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const validate = () => {
     const e: Record<string, string> = {};
@@ -20,12 +55,30 @@ const Contact = () => {
     return Object.keys(e).length === 0;
   };
 
-  const handleSubmit = (ev: FormEvent) => {
+  const handleSubmit = async (ev: FormEvent) => {
     ev.preventDefault();
+    if (isSubmitting) return;
     if (!validate()) return;
-    toast({ title: "Message Sent", description: "Thank you! We will get back to you within 24 hours." });
-    setForm({ name: "", phone: "", email: "", service: "", message: "" });
-    setErrors({});
+    setIsSubmitting(true);
+
+    try {
+      await submitContactToGoogleSheet(form);
+      toast({ title: "Message Sent", description: "Thank you! We will get back to you within 24 hours." });
+      setForm(emptyForm);
+      setErrors({});
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Failed to send message";
+      toast({
+        title: "Send Failed",
+        description:
+          message === "Missing VITE_GOOGLE_SHEETS_WEB_APP_URL"
+            ? "Google Sheet is not connected yet. Please configure the Google Sheets endpoint."
+            : "Something went wrong while sending your message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const field = (key: string) => ({
@@ -92,9 +145,10 @@ const Contact = () => {
 
             <button
               type="submit"
-              className="bg-primary text-primary-foreground font-semibold px-8 py-3 rounded-lg hover:opacity-90 transition-opacity"
+              disabled={isSubmitting}
+              className="bg-primary text-primary-foreground font-semibold px-8 py-3 rounded-lg hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Send Message
+              {isSubmitting ? "Sending..." : "Send Message"}
             </button>
           </form>
 
