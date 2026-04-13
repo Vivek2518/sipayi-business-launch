@@ -16,8 +16,8 @@ const faqs = [
     a: "We maintain a ready pool of trained professionals and can typically deploy personnel within 24 to 48 hours of confirming your requirements. For urgent needs, we offer same-day deployment options based on availability.",
   },
   {
-    q: "Do you provide services outside Bangalore?",
-    a: "Yes, while our headquarters is in Bangalore, we provide services across Karnataka and neighbouring states. Contact us with your specific location requirements and we will confirm availability.",
+    q: "Do you provide services outside Bengaluru?",
+    a: "Yes, while our headquarters is in Domlur, Bengaluru, we provide services across Karnataka and neighbouring states. Contact us with your specific location requirements and we will confirm availability.",
   },
   {
     q: "What is the minimum contract duration?",
