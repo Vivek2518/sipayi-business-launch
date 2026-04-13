@@ -3,6 +3,7 @@ import Layout from "@/components/Layout";
 
 const sections = [
   {
+    id: "security",
     icon: Shield,
     title: "Security Services",
     items: [
@@ -13,6 +14,7 @@ const sections = [
     ],
   },
   {
+    id: "manpower",
     icon: Users,
     title: "Manpower Supply",
     items: [
@@ -22,6 +24,7 @@ const sections = [
     ],
   },
   {
+    id: "consultancy",
     icon: Briefcase,
     title: "Consultancy Services",
     items: [
@@ -42,7 +45,11 @@ const Services = () => (
     </section>
 
     {sections.map((s, i) => (
-      <section key={s.title} className={`section-padding ${i % 2 === 1 ? "section-alt" : ""}`}>
+      <section 
+        key={s.title} 
+        id={s.id}
+        className={`section-padding scroll-mt-20 ${i % 2 === 1 ? "section-alt" : ""}`}
+      >
         <div className="container mx-auto max-w-4xl">
           <div className="flex items-center gap-3 mb-8">
             <s.icon className="h-8 w-8 text-primary" />

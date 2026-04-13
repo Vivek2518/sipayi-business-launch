@@ -15,9 +15,9 @@ const WhatsAppIcon = ({ className }: { className?: string }) => (
 const Footer = () => (
   <footer className="bg-primary text-primary-foreground">
     <div className="container mx-auto px-4 py-12">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* Company */}
-        <div>
+      <div className="flex flex-wrap gap-y-10">
+        {/* Company - Fixed width on large screens */}
+        <div className="w-full lg:w-1/3 pr-8">
           <div className="flex items-center gap-2 mb-4">
             <Shield className="h-6 w-6" />
             <span className="font-bold">Sipayi Security & Bhagavan Consultancy</span>
@@ -39,37 +39,50 @@ const Footer = () => (
           </div>
         </div>
 
-        {/* Quick Links */}
-        <div>
-          <h4 className="font-semibold mb-4">Quick Links</h4>
-          <ul className="space-y-2 text-sm opacity-80">
-            {["/", "/services", "/about", "/contact", "/faq"].map((to) => (
-              <li key={to}>
-                <Link to={to} className="hover:opacity-100 transition-opacity">
-                  {to === "/" ? "Home" : to.slice(1).charAt(0).toUpperCase() + to.slice(2)}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {/* Links Container - Distributed to cover the gap */}
+        <div className="w-full lg:w-2/3 flex flex-wrap justify-between gap-y-10 gap-x-8">
+          {/* Quick Links */}
+          <div className="min-w-[140px]">
+            <h4 className="font-semibold mb-4 text-white">Quick Links</h4>
+            <ul className="space-y-2 text-sm opacity-80">
+              {["/", "/services", "/about", "/contact", "/faq"].map((to) => (
+                <li key={to}>
+                  <Link to={to} className="hover:opacity-100 transition-opacity">
+                    {to === "/" ? "Home" : to.slice(1).charAt(0).toUpperCase() + to.slice(2)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        {/* Contact */}
-        <div>
-          <h4 className="font-semibold mb-4">Contact Us</h4>
-          <ul className="space-y-4 text-sm opacity-80">
-            <li className="flex items-start gap-3">
-              <Phone className="h-4 w-4 shrink-0 mt-0.5" />
-              <span>+91 98765 43210</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <Mail className="h-4 w-4 shrink-0 mt-0.5" />
-              <span>info@sipayisecurity.com</span>
-            </li>
-            <li className="flex items-start gap-3">
-              <MapPin className="h-4 w-4 shrink-0 mt-0.5" />
-              <span>#8/2,1 8/2, Ist FLOOR, ABOVE NARAYANA KITCHEN, NEAR DOMLAR FLY OVER RING ROAD DOMLUR LAYOUT, BENGALURU 560071</span>
-            </li>
-          </ul>
+          {/* Services */}
+          <div className="min-w-[180px]">
+            <h4 className="font-semibold mb-4 text-white">Services</h4>
+            <ul className="space-y-2 text-sm opacity-80">
+              <li><Link to="/services#security" className="hover:opacity-100 transition-opacity">Security Services</Link></li>
+              <li><Link to="/services#manpower" className="hover:opacity-100 transition-opacity">Manpower Supply</Link></li>
+              <li><Link to="/services#consultancy" className="hover:opacity-100 transition-opacity">Consultancy Services</Link></li>
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div className="min-w-[260px] max-w-sm">
+            <h4 className="font-semibold mb-4 text-white">Contact Us</h4>
+            <ul className="space-y-4 text-sm opacity-80">
+              <li className="flex items-start gap-3">
+                <Phone className="h-4 w-4 shrink-0 mt-0.5" />
+                <span>+91 98765 43210</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <Mail className="h-4 w-4 shrink-0 mt-0.5" />
+                <span>info@sipayisecurity.com</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin className="h-4 w-4 shrink-0 mt-0.5" />
+                <span>#8/2,1 8/2, Ist FLOOR, ABOVE NARAYANA KITCHEN, NEAR DOMLAR FLY OVER RING ROAD DOMLUR LAYOUT, BENGALURU 560071</span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
