@@ -15,7 +15,7 @@ const About = () => (
       <div className="container mx-auto max-w-3xl">
         <h2 className="text-2xl font-bold mb-6">Company Overview</h2>
         <p className="text-muted-foreground leading-relaxed mb-4">
-          Sipayi Security & Manpower Services, in partnership with Bhagavan Consultancy, has been a trusted provider of security, workforce, and business consultancy solutions across Karnataka and beyond. Founded with a commitment to quality and reliability, we serve corporate offices, industrial facilities, residential complexes, and event organizers.
+          Sipayi Security and Manpower Services has been a trusted provider of security, workforce, and business consultancy solutions across Karnataka and beyond. Founded with a commitment to quality and reliability, we serve corporate offices, industrial facilities, residential complexes, and event organizers.
         </p>
         <p className="text-muted-foreground leading-relaxed">
           With a team of over 500 trained professionals and a client base exceeding 100 organisations, we have established ourselves as a dependable partner for businesses of all sizes. Our focus on background-verified personnel, timely deployment, and transparent pricing sets us apart in the industry.

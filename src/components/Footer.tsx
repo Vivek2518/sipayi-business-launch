@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Shield, Phone, Mail, MapPin, Instagram, Linkedin } from "lucide-react";
+import { Phone, Mail, MapPin, Instagram, Linkedin } from "lucide-react";
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg
@@ -18,9 +18,12 @@ const Footer = () => (
       <div className="flex flex-wrap gap-y-10">
         {/* Company - Fixed width on large screens */}
         <div className="w-full lg:w-1/3 pr-8">
-          <div className="flex items-center gap-2 mb-4">
-            <Shield className="h-6 w-6" />
-            <span className="font-bold">Sipayi Security & Bhagavan Consultancy</span>
+          <div className="flex items-center gap-3 mb-4">
+            <img src="/Logo.jpeg" alt="Sipayi Security Logo" className="h-12 w-auto rounded-sm" />
+            <div className="leading-tight">
+              <span className="font-bold block text-lg">Sipayi Security</span>
+              <span className="text-xs opacity-80 block">and Manpower Services</span>
+            </div>
           </div>
           <p className="text-sm opacity-80 leading-relaxed mb-6">
             Providing trusted security, manpower, and consultancy services across the region since 2015.
@@ -87,7 +90,7 @@ const Footer = () => (
       </div>
 
       <div className="border-t border-primary-foreground/20 mt-8 pt-6 text-center text-sm opacity-60">
-        © {new Date().getFullYear()} Sipayi Security & Manpower Services & Bhagavan Consultancy. All rights reserved.
+        © {new Date().getFullYear()} Sipayi Security and Manpower Services. All rights reserved.
       </div>
     </div>
   </footer>
