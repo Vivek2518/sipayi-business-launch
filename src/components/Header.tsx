@@ -24,9 +24,9 @@ const Header = () => {
             alt="Sipayi Security Logo" 
             className="h-14 w-auto drop-shadow-sm group-hover:scale-105 transition-transform" 
           />
-          <div className="flex flex-col">
-            <span className="font-bold text-primary text-base md:text-lg leading-none tracking-tight">Sipayi Security</span>
-            <span className="text-muted-foreground text-[10px] md:text-xs font-medium uppercase tracking-widest mt-1 opacity-80">and Manpower Services</span>
+          <div className="leading-tight">
+            <span className="font-bold text-primary text-sm md:text-base block">Sipayi Security</span>
+            <span className="text-muted-foreground text-xs block">and Manpower Services</span>
           </div>
         </Link>
 
