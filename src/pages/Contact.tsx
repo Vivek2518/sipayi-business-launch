@@ -170,7 +170,7 @@ const Contact = () => {
               <ul className="space-y-4 text-sm text-muted-foreground mb-8">
                 <li className="flex items-start gap-3">
                   <Phone className="h-5 w-5 shrink-0 text-primary mt-0.5" />
-                  <span>+91 98765 43210</span>
+                  <span className="whitespace-nowrap">080-41163369, +91 96066 96105</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <Mail className="h-5 w-5 shrink-0 text-primary mt-0.5" />

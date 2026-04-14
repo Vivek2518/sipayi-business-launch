@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import Logo from "../../public/Logo.png";
+
 const navLinks = [
   { to: "/", label: "Home" },
   { to: "/services", label: "Services" },
@@ -18,11 +18,15 @@ const Header = () => {
     <header className="sticky top-0 z-50 bg-background border-b shadow-sm">
       <div className="container mx-auto flex items-center justify-between h-16 px-4">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2">
-          <img src={Logo} alt="Sipayi Security Logo" className="w-auto rounded-sm" style={{height: "68px"}}/>
-          <div className="leading-tight">
-            <span className="font-bold text-primary text-sm md:text-base block">Sipayi Security</span>
-            <span className="text-muted-foreground text-xs block">and Manpower Services</span>
+        <Link to="/" className="flex items-center gap-3 group transition-all duration-300">
+          <img 
+            src="/Logo.png" 
+            alt="Sipayi Security Logo" 
+            className="h-14 w-auto drop-shadow-sm group-hover:scale-105 transition-transform" 
+          />
+          <div className="flex flex-col">
+            <span className="font-bold text-primary text-base md:text-lg leading-none tracking-tight">Sipayi Security</span>
+            <span className="text-muted-foreground text-[10px] md:text-xs font-medium uppercase tracking-widest mt-1 opacity-80">and Manpower Services</span>
           </div>
         </Link>
 

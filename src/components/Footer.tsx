@@ -19,7 +19,7 @@ const Footer = () => (
         {/* Company - Fixed width on large screens */}
         <div className="w-full lg:w-1/3 pr-8">
           <div className="flex items-center gap-3 mb-4">
-            <img src="/Logo.jpeg" alt="Sipayi Security Logo" className="h-12 w-auto rounded-sm" />
+            <img src="/Logo.png" alt="Sipayi Security Logo" className="h-12 w-auto rounded-sm" />
             <div className="leading-tight">
               <span className="font-bold block text-lg">Sipayi Security</span>
               <span className="text-xs opacity-80 block">and Manpower Services</span>
@@ -69,12 +69,12 @@ const Footer = () => (
           </div>
 
           {/* Contact */}
-          <div className="min-w-[260px] max-w-sm">
+          <div className="min-w-[300px] max-w-sm">
             <h4 className="font-semibold mb-4 text-white">Contact Us</h4>
             <ul className="space-y-4 text-sm opacity-80">
               <li className="flex items-start gap-3">
                 <Phone className="h-4 w-4 shrink-0 mt-0.5" />
-                <span>+91 98765 43210</span>
+                <span className="whitespace-nowrap">080-41163369, +91 96066 96105</span>
               </li>
               <li className="flex items-start gap-3">
                 <Mail className="h-4 w-4 shrink-0 mt-0.5" />
