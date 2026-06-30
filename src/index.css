@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,38 +7,45 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 210 20% 16%;
+    --foreground: 214 32% 17%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 20% 16%;
+    --card-foreground: 214 32% 17%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 20% 16%;
+    --popover-foreground: 214 32% 17%;
 
-    --primary: 205 80% 21%;
+    /* Navy */
+    --primary: 217 68% 13%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 14% 96%;
-    --secondary-foreground: 210 20% 16%;
+    --secondary: 210 33% 97%;
+    --secondary-foreground: 217 68% 13%;
 
-    --muted: 210 14% 96%;
-    --muted-foreground: 210 10% 46%;
+    --muted: 210 33% 97%;
+    --muted-foreground: 213 15% 40%;
 
-    --accent: 205 60% 30%;
-    --accent-foreground: 0 0% 100%;
+    /* Gold */
+    --accent: 43 80% 46%;
+    --accent-foreground: 217 68% 13%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 72% 45%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 14% 89%;
-    --input: 210 14% 89%;
-    --ring: 205 80% 21%;
+    --border: 218 24% 89%;
+    --input: 218 24% 89%;
+    --ring: 43 80% 46%;
 
     --radius: 0.5rem;
 
-    --hero-gradient: linear-gradient(135deg, hsl(205 80% 21%), hsl(205 60% 30%));
-    --cta-gradient: linear-gradient(135deg, hsl(205 80% 21%), hsl(200 70% 35%));
-    --section-alt: 210 20% 97%;
+    /* Brand palette extras */
+    --navy: 217 68% 13%;
+    --steel: 217 57% 24%;
+    --gold: 43 80% 46%;
+
+    --hero-gradient: linear-gradient(135deg, hsl(217 68% 13%) 50%, hsl(217 57% 24%) 100%);
+    --cta-gradient: linear-gradient(135deg, hsl(217 68% 13%), hsl(217 57% 24%));
+    --section-alt: 210 33% 97%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -52,18 +59,41 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   * {
     @apply border-border;
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.7;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: 'Sora', sans-serif;
+    line-height: 1.25;
+  }
+  h1 {
+    font-size: clamp(1.9rem, 4.5vw, 3rem);
+    font-weight: 800;
+  }
+  h2 {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 700;
+  }
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
   }
 }
 
 @layer components {
   .section-padding {
-    @apply py-16 md:py-24 px-4;
+    @apply py-[76px];
   }
   .section-alt {
     background-color: hsl(var(--section-alt));

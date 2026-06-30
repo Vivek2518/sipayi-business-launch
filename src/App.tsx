@@ -7,8 +7,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index";
 import Services from "./pages/Services";
 import About from "./pages/About";
-import Contact from "./pages/Contact";
 import FAQ from "./pages/FAQ";
+import CorporateSecurity from "./pages/CorporateSecurity";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,8 +23,8 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/services" element={<Services />} />
+          <Route path="/corporate-security-services" element={<CorporateSecurity />} />
           <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
