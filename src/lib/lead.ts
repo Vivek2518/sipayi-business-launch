@@ -2,6 +2,7 @@ export interface LeadData {
   name: string;
   city: string;
   service?: string;
+  extra?: Record<string, string>;
 }
 
 /**
@@ -17,6 +18,9 @@ export async function submitLead(data: LeadData): Promise<void> {
   fd.append("name", data.name);
   fd.append("city", data.city);
   fd.append("service", data.service ?? "Free Quote Request");
+  for (const [key, value] of Object.entries(data.extra ?? {})) {
+    fd.append(key, value);
+  }
   fd.append("submittedAt", new Date().toISOString());
   fd.append("pageUrl", window.location.href);
   await fetch(endpoint, { method: "POST", body: fd, mode: "no-cors" });

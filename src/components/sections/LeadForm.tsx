@@ -17,15 +17,26 @@ const DEFAULT_CITIES = [
 interface LeadFormProps {
   buttonLabel?: string;
   service?: string;
-  cities?: string[];
+  selectLabel?: string;
+  selectOptions?: string[];
+  /** Optional extra text input rendered after the select (e.g. phone / event date). */
+  extraInput?: { name: string; placeholder: string };
   formClassName?: string;
+  /** "dark" = translucent inputs with white text (for dark/ink CTA backgrounds). */
+  inputTheme?: "light" | "dark";
+  /** Submit button colour. */
+  buttonTheme?: "gold" | "navy" | "amber";
 }
 
 const LeadForm = ({
   buttonLabel = "Get Free Quote →",
   service,
-  cities = DEFAULT_CITIES,
+  selectLabel = "Select City",
+  selectOptions = DEFAULT_CITIES,
+  extraInput,
   formClassName = "max-w-[520px]",
+  inputTheme = "light",
+  buttonTheme = "gold",
 }: LeadFormProps) => {
   const { toast } = useToast();
   const [submitting, setSubmitting] = useState(false);
@@ -38,14 +49,18 @@ const LeadForm = ({
     const city = String(data.get("city") || "");
     if (!name || !city) {
       toast({
-        title: "Please enter your name and select a city",
+        title: `Please enter your name and select ${selectLabel.replace(/^Select |^/, "a ").toLowerCase()}`,
         variant: "destructive",
       });
       return;
     }
+    const extra: Record<string, string> = {};
+    if (extraInput) {
+      extra[extraInput.name] = String(data.get(extraInput.name) || "").trim();
+    }
     setSubmitting(true);
     try {
-      await submitLead({ name, city, service });
+      await submitLead({ name, city, service, extra });
       toast({
         title: "Request received",
         description: "Our team will get back to you within 2 hours.",
@@ -57,7 +72,7 @@ const LeadForm = ({
         title: "Couldn't send your request",
         description:
           message === "Missing VITE_GOOGLE_SHEETS_WEB_APP_URL"
-            ? "The quote form isn't connected yet — please call us instead."
+            ? "The form isn't connected yet — please call us instead."
             : "Something went wrong. Please try again or call us.",
         variant: "destructive",
       });
@@ -65,6 +80,11 @@ const LeadForm = ({
       setSubmitting(false);
     }
   };
+
+  const inputClass =
+    inputTheme === "dark"
+      ? "flex-1 min-w-[140px] px-[14px] py-3 rounded text-[0.88rem] bg-white/[0.06] border border-white/10 text-white placeholder:text-white/30"
+      : "flex-1 min-w-[140px] px-4 py-[13px] rounded-md border-0 text-[0.9rem] text-foreground";
 
   return (
     <form
@@ -76,25 +96,34 @@ const LeadForm = ({
         name="name"
         aria-label="Your name"
         placeholder="Your Name"
-        className="flex-1 min-w-[140px] px-4 py-[13px] rounded-md border-0 text-[0.9rem] text-foreground"
+        className={inputClass}
       />
       <select
         name="city"
-        aria-label="Select city"
+        aria-label={selectLabel}
         defaultValue=""
-        className="flex-1 min-w-[140px] px-4 py-[13px] rounded-md border-0 text-[0.9rem] text-foreground"
+        className={inputClass}
       >
         <option value="" disabled>
-          Select City
+          {selectLabel}
         </option>
-        {cities.map((c) => (
+        {selectOptions.map((c) => (
           <option key={c}>{c}</option>
         ))}
       </select>
+      {extraInput && (
+        <input
+          type="text"
+          name={extraInput.name}
+          aria-label={extraInput.placeholder}
+          placeholder={extraInput.placeholder}
+          className={inputClass}
+        />
+      )}
       <button
         type="submit"
         disabled={submitting}
-        className="bg-accent text-primary px-[26px] py-[13px] rounded-md border-0 font-bold text-[0.9rem] font-heading cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+        className={`${buttonTheme === "navy" ? "bg-primary text-white" : buttonTheme === "amber" ? "bg-[#FDE68A] text-[#78350F]" : "bg-accent text-primary"} px-[26px] py-[13px] rounded-md border-0 font-bold text-[0.9rem] font-heading cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed`}
       >
         {submitting ? "Sending..." : buttonLabel}
       </button>

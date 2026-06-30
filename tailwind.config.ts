@@ -17,6 +17,8 @@ export default {
       fontFamily: {
         sans: ["Inter", "sans-serif"],
         heading: ["Sora", "sans-serif"],
+        mono: ["JetBrains Mono", "monospace"],
+        serif: ["Lora", "serif"],
       },
       colors: {
         border: "hsl(var(--border))",

@@ -2,9 +2,14 @@ import { Link } from "react-router-dom";
 
 export interface FooterProps {
   blurb?: string;
+  servicesTitle?: string;
   services?: string[];
   industries?: string[];
+  thirdColTitle?: string;
+  thirdColTo?: string;
   bottomTagline?: string;
+  /** "industrial" = darker ink surface with monospace bottom row. */
+  theme?: "default" | "industrial";
 }
 
 const DEFAULT_BLURB =
@@ -43,11 +48,15 @@ const linkClass = "text-white/60 text-[0.83rem] hover:text-accent transition-col
 
 const Footer = ({
   blurb = DEFAULT_BLURB,
+  servicesTitle = "Services",
   services = DEFAULT_SERVICES,
   industries = DEFAULT_INDUSTRIES,
+  thirdColTitle = "Industries",
+  thirdColTo = "/#industries",
   bottomTagline = DEFAULT_TAGLINE,
+  theme = "default",
 }: FooterProps) => (
-  <footer className="bg-primary text-white/65 pt-[52px] pb-6 px-6">
+  <footer className={`${theme === "industrial" ? "bg-[#111827]" : "bg-primary"} text-white/65 pt-[52px] pb-6 px-6`}>
     <div className="mx-auto max-w-[1120px] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[2fr_1fr_1fr_1fr] gap-9 mb-9">
       {/* Company */}
       <div>
@@ -69,7 +78,7 @@ const Footer = ({
 
       {/* Services */}
       <div>
-        <h4 className="font-heading text-white text-[0.88rem] mb-3.5">Services</h4>
+        <h4 className="font-heading text-white text-[0.88rem] mb-3.5">{servicesTitle}</h4>
         <ul className="flex flex-col gap-2">
           {services.map((s) => (
             <li key={s}>
@@ -79,13 +88,13 @@ const Footer = ({
         </ul>
       </div>
 
-      {/* Industries */}
+      {/* Third column (Industries / Residential / etc.) */}
       <div>
-        <h4 className="font-heading text-white text-[0.88rem] mb-3.5">Industries</h4>
+        <h4 className="font-heading text-white text-[0.88rem] mb-3.5">{thirdColTitle}</h4>
         <ul className="flex flex-col gap-2">
           {industries.map((i) => (
             <li key={i}>
-              <Link to="/#industries" className={linkClass}>{i}</Link>
+              <Link to={thirdColTo} className={linkClass}>{i}</Link>
             </li>
           ))}
         </ul>
@@ -108,7 +117,7 @@ const Footer = ({
       </div>
     </div>
 
-    <div className="mx-auto max-w-[1120px] border-t border-white/10 pt-[18px] flex justify-between flex-wrap gap-2 text-[0.75rem] text-white/60">
+    <div className={`mx-auto max-w-[1120px] border-t border-white/10 pt-[18px] flex justify-between flex-wrap gap-2 text-[0.75rem] text-white/60 ${theme === "industrial" ? "font-mono" : ""}`}>
       <span>© {new Date().getFullYear()} Sipayi Security &amp; Manpower Services. All Rights Reserved.</span>
       <span>{bottomTagline}</span>
     </div>

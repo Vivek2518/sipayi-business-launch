@@ -6,14 +6,23 @@ interface SectionHeadingProps {
   title: ReactNode;
   subtitle?: ReactNode;
   align?: "center" | "left";
+  tone?: "gold" | "teal" | "plum" | "rose";
   className?: string;
 }
+
+const TONE_TEXT: Record<string, string> = {
+  teal: "text-[#0F766E]",
+  plum: "text-[#7C3AED]",
+  rose: "text-[#BE185D]",
+  gold: "text-accent",
+};
 
 const SectionHeading = ({
   eyebrow,
   title,
   subtitle,
   align = "center",
+  tone = "gold",
   className,
 }: SectionHeadingProps) => (
   <div
@@ -23,7 +32,12 @@ const SectionHeading = ({
     )}
   >
     {eyebrow && (
-      <p className="text-[0.72rem] font-bold tracking-[0.12em] uppercase text-accent mb-2">
+      <p
+        className={cn(
+          "text-[0.72rem] font-bold tracking-[0.12em] uppercase mb-2",
+          TONE_TEXT[tone],
+        )}
+      >
         {eyebrow}
       </p>
     )}
